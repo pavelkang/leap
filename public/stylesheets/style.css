@@ -1,8 +1,15 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    background-color: #eee;
 }
-
-a {
-  color: #00B7FF;
+md-whiteframe {
+    background: #fff;
+    margin: 20px;
+    padding: 20px;
+    width: 60%;
+}
+.face {
+    border-radius: 30px;
+    border: 1px solid #ddd;
+    width: 48px;
+    margin: 16px;
 }

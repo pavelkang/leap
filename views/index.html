@@ -1,20 +1,45 @@
 <html ng-app="homeApp">
     <head>
-        <title>Hello</title>
+        <title>Leap Learn - Learn Essential Skills With Leap Motion</title>
         <link rel="stylesheet" href="angular-material/angular-material.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic">
         <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+        <link href="stylesheets/style.css" rel="stylesheet"/>
     </head>
     <body ng-controller="AppCtrl">
         <md-toolbar>
             <h2 class="md-toolbar-tools">
-                <span flex="60">Leap Motion</span>
+                <span flex="60">Leap Learn</span>
                 <span flex="20">Upload</span>
                 <span flex="20">Log out</span>
             </h2>
         </md-toolbar>
-        Hello World
-        <md-button class="md-raised">Hello</md-button>
+        <div class="container" layout="column" layout-align="center center">
+            <md-whiteframe class="md-whiteframe-z1" layout="column">
+                <md-content md-theme="docs-dark" class="md-padding" layout="column" layout-sm="column" style="font-size:1.2em">
+                    <md-input-container>
+                        <label>Search For Tutorial</label>
+                        <input ng-model="query">
+                    </md-input-container>
+                </md-content>
+                <md-list layout-align="start">
+                    <md-item ng-repeat="item in todos | filter: query">
+                        <md-item-content>
+                            <div class="md-tile-left">
+                                <img ng-src="{{item.face}}" class="face" alt="{{item.who}}">
+                            </div>
+                            <div class="md-tile-content">
+                                <h3>{{item.title}}</h3>
+                                <h4>{{item.who}}</h4>
+                                <p>
+                                    {{item.notes}}
+                                </p>
+                            </div>
+                        </md-item-content>
+                    </md-item>
+                </md-list>
+            </md-whiteframe>
+        </div>
         <script src="angular/angular.js"></script>
         <script src="angular-route/angular-route.min.js"></script>
         <script src="angular-animate/angular-animate.min.js"></script>
