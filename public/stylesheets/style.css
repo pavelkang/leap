@@ -5,11 +5,18 @@ md-whiteframe {
     background: #fff;
     margin: 20px;
     padding: 20px;
-    width: 60%;
+    width: 70%;
 }
 .face {
     border-radius: 30px;
     border: 1px solid #ddd;
     width: 48px;
     margin: 16px;
+}
+.title {
+    color: #3949ab;
+}
+md-item-content:hover {
+    background-color: #e8eaf6;
+    cursor: pointer;
 }
