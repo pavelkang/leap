@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
-
+var uploads = require('./routes/upload');
 var app = express();
 
 // view engine setup
@@ -22,8 +22,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'bower_components')));
+app.use(express.static(path.join(__dirname, 'views')));
 
-app.use('/', routes);
+app.use('/', routes); // homepage
+app.use('/upload', uploads); // upload page
 app.use('/users', users);
 
 // catch 404 and forward to error handler

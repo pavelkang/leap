@@ -10,36 +10,11 @@
         <md-toolbar class="md-primary">
             <h2 class="md-toolbar-tools">
                 <span flex="60">Leap Learn</span>
-                <span flex="20">Upload</span>
+                <span flex="20"><a href="#/upload">Upload</a></span>
                 <span flex="20">Log out</span>
             </h2>
         </md-toolbar>
-        <div class="container" layout="column" layout-align="center center">
-            <md-whiteframe class="md-whiteframe-z1" layout="column">
-                <md-content class="md-padding" layout="column" layout-sm="column" style="font-size:.8em">
-                    <md-input-container>
-                        <label>Search For Tutorial</label>
-                        <input ng-model="query">
-                    </md-input-container>
-                </md-content>
-                <md-list layout-align="start">
-                    <md-item ng-repeat="item in todos | filter: query">
-                        <md-item-content>
-                            <div class="md-tile-left">
-                                <img ng-src="{{item.face}}" class="face" alt="{{item.who}}">
-                            </div>
-                            <div class="md-tile-content">
-                                <h3 class="title">{{item.title}}</h3>
-                                <h4>{{item.who}}</h4>
-                                <p>
-                                    {{item.notes}}
-                                </p>
-                            </div>
-                        </md-item-content>
-                    </md-item>
-                </md-list>
-            </md-whiteframe>
-        </div>
+        <div ng-view></div>
         <script src="angular/angular.js"></script>
         <script src="angular-route/angular-route.min.js"></script>
         <script src="angular-animate/angular-animate.min.js"></script>
