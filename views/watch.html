@@ -8,12 +8,11 @@
          left: 0;
      }
     </style>
-    <script>
-
-    </script>
     <md-whiteframe class="md-whiteframe-z1 watchCards" layout="column"
                    layout-align="center center" id="watchWindow"">
-        match
+        <div id="matchInfo">
+            match
+        </div>
     </md-whiteframe>
     <md-whiteframe class="md-whiteframe-z1 watchCards" layout="row"
                    layout-align="center center start">
@@ -27,11 +26,11 @@
         </div>
         <div class="thumbBlock" ng-click="vote(0)">
             <img alt="" src="images/tup.svg" class="thumb"/>
-            <span>{{ups}}</span>
+            <span id="tup">{{ups}}</span>
         </div>
         <div class="thumbBlock" ng-click="vote(1)">
             <img alt="" src="images/tdown.svg" class="thumb"/>
-            <span>{{downs}}</span>
+            <span id="tdown">{{downs}}</span>
         </div>
     </md-whiteframe>
     <md-whiteframe class="md-whiteframe-z1 watchCards" layout="column"

@@ -52,3 +52,6 @@ hr {
 #watchWindow {
     height: 500px; !important
 }
+.dummy {
+    font-size: .8em;
+}

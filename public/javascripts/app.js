@@ -63,11 +63,22 @@ leapApp.controller("WatchCtrl", function($scope, $http, $location){
      setTimeout(function(){
          var can = document.querySelector("canvas");
          can.style.position = "relative";
-         //can.style.width = "300";
-         //can.style.height = "300";
          var win = document.getElementById("watchWindow");
-         win.appendChild(can);
-
+         win.insertBefore(can, win.childNodes[0]);
+         var a = document.body.childNodes;
+         var cl = document.getElementById("connect-leap");
+         win.insertBefore(cl, win.childNodes[1]);
+         for (var i = 0; i < a.length; i++) {
+             if (a[i].tagName === "CANVAS") { // audience hands
+                 a[i].border = "solid";
+                 a[i].style.position = "absolute";
+                 a[i].style.width = can.offsetWidth + "px";
+                 a[i].style.height = can.offsetHeight + "px";
+                 a[i].style.top = can.offsetTop;
+                 a[i].style.left = can.offsetLeft;
+                 win.insertBefore(a[i], win.childNodes[1]);
+             }
+         }
      }, 1000);
     // Rest
     $scope.id = $location.search()["id"];
@@ -87,17 +98,21 @@ leapApp.controller("WatchCtrl", function($scope, $http, $location){
             if ($scope.voted == 0) {
                 $scope.ups -= 1;
                 $scope.voted = -1;
+                document.getElementById("tup").style.color = "black";
             } else if ($scope.voted == -1){
                 $scope.ups += 1;
                 $scope.voted = 0;
+                document.getElementById("tup").style.color = "indigo";
             }
         } else { // down
             if ($scope.voted == 1) {
                 $scope.downs -= 1;
                 $scope.voted = -1;
+                document.getElementById("tdown").style.color = "black";
             } else if ($scope.voted == -1){
                 $scope.downs += 1;
                 $scope.voted = 1;
+                document.getElementById("tdown").style.color = "red";
             }
         }
     };
