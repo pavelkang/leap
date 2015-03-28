@@ -31,7 +31,9 @@ leapApp.config(function($mdThemingProvider) {
 });
 // Upload page controller
 leapApp.controller("UpCtrl", function($scope, $http){
-    console.log("Hi");
+    $scope.back = function() {
+        window.location.href = "/";
+    };
 });
 
 leapApp.controller("WatchCtrl", function($scope, $http, $location){
