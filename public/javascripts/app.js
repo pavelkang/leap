@@ -13,6 +13,10 @@ leapApp.config(function($routeProvider) {
         .when('/watch', {
             templateUrl : 'watch.html',
             controller : 'WatchCtrl'
+        })
+        .when('/test', {
+            templateUrl: 'test.html',
+            controller: 'TestCtrl'
         });
 });
 // Theming
@@ -29,6 +33,9 @@ leapApp.config(function($mdThemingProvider) {
         });
 
 });
+leapApp.controller("TestCtrl", function($scope, $http) {
+    console.log("CTrl");
+});
 // Upload page controller
 leapApp.controller("UpCtrl", function($scope, $http){
     $scope.back = function() {
@@ -37,6 +44,32 @@ leapApp.controller("UpCtrl", function($scope, $http){
 });
 
 leapApp.controller("WatchCtrl", function($scope, $http, $location){
+    // Leap Motion
+     var controller = new Leap.Controller();
+     var overlayController = new Leap.Controller();
+     controller.use('playback',
+                    {
+                        recording: 'recorder/recordings/pinch-57fps.json.lz',
+                        requiredProtocolVersion: 6,
+                        pauseOnHand: false,
+                        loop: true,
+                        timeBetweenLoops: 1000
+                    })
+               .use('riggedHand',{materialOptions:{wireframe:true}});
+     overlayController.use('riggedHand');
+     overlayController.connect();
+     controller.plugins.playback.player.overlay = overlayController;
+     window.controller = controller;
+     setTimeout(function(){
+         var can = document.querySelector("canvas");
+         can.style.position = "relative";
+         //can.style.width = "300";
+         //can.style.height = "300";
+         var win = document.getElementById("watchWindow");
+         win.appendChild(can);
+
+     }, 1000);
+    // Rest
     $scope.id = $location.search()["id"];
     $scope.ups = 42;
     $scope.downs = 1;

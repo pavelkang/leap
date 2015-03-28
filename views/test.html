@@ -1,0 +1,63 @@
+<html>
+    <head>
+
+        <script src="recorder/javascripts/lib/three.min.js"></script>
+        <script src="//js.leapmotion.com/leap-0.6.4.js"></script>
+        <script src="//js.leapmotion.com/leap-plugins-0.1.6.js"></script>
+        <script src="//js.leapmotion.com/leap.rigged-hand-0.1.4.js"></script>
+        <script src="build/leap.playback-0.2.1.js"></script>
+
+        <style>
+         body{
+             font-family: Helvetica;
+         }
+         canvas {
+             position: fixed;
+             width: 100%;
+             height: 100%;
+             top: 0;
+             left: 0;
+         }
+         #debugger{
+             top: 0;
+             left: 0;
+             position: fixed;
+             background: black;
+             color: #eee;
+             padding: 4px;
+             display: none;
+         }
+         .leapjs-dialog{
+             display: none; /* hide warning for v1 users */
+         }
+        </style>
+
+    </head>
+    <body>
+
+        <div id="debugger"></div>
+
+        <script>
+         var controller = new Leap.Controller();
+         var overlayController = new Leap.Controller();
+         controller.use('playback',
+                        {
+                            recording: 'recorder/recordings/pinch-57fps.json.lz',
+                            requiredProtocolVersion: 6,
+                            pauseOnHand: false,
+                            loop: true,
+                            timeBetweenLoops: 1000
+                        })
+                   .use('riggedHand',{materialOptions:{wireframe:true}});
+         overlayController.use('riggedHand');
+         overlayController.connect();
+         controller.plugins.playback.player.overlay = overlayController;
+         window.controller = controller;
+         setTimeout(function(){
+             var can = document.querySelector("canvas");
+             console.log(can);
+         }, 1000);
+        </script>
+
+    </body>
+</html>

@@ -49,3 +49,6 @@ hr {
 .thumbBlock {
     margin-left: 8px;
 }
+#watchWindow {
+    height: 500px; !important
+}
