@@ -1,27 +1,27 @@
 [
     {
-        "id": "1",
+        "id": "0",
         "face" : "/images/60.jpeg",
         "title": "Guitar Strum",
         "who": "Hongyu Li",
         "notes": "A tutorial on how to strum the guitar"
     },
     {
-        "id": "2",
+        "id": "1",
         "face" : "/images/60.jpeg",
         "title": "Flip The Pan",
         "who": "Kai Kang",
         "notes": " Flip the pan while stir-frying to add more flavor to your dishes"
     },
     {
-        "id": "3",
+        "id": "2",
         "face" : "/images/60.jpeg",
         "title": "Guitar Strum",
         "who": "Hongyu Li",
         "notes": "A tutorial on how to strum the guitar"
     },
     {
-        "id":"4",
+        "id":"3",
         "face" : "/images/60.jpeg",
         "title": "Flip The Pan",
         "who": "Kai Kang",

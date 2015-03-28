@@ -1,6 +1,43 @@
-<md-whiteframe class="md-whiteframe-z1" layout="column" layout-align="center center">
-    <div>PLAYBACK  watching {{id}}</div>
-</md-whiteframe>
-<md-whiteframe class="md-whiteframe-z1" layout="column" layout-align="center center">
-    {{}}
-</md-whiteframe>
+<div class="container" layout="column" layout-align="center center">
+    <md-whiteframe class="md-whiteframe-z1 watchCards" layout="column"
+                   layout-align="center center" style="height:400px">
+        <span>PLAYBACK  watching {{id}}</span>
+    </md-whiteframe>
+    <md-whiteframe class="md-whiteframe-z1 watchCards" layout="row"
+                   layout-align="center center start">
+        <div class="md-tile-left">
+            <img alt="image here" src="{{face}}" class="face"/>
+        </div>
+        <div class="md-tile-content">
+            <h3 class="title watchTitle">{{title}}</h3>
+            <h4>{{author}}</h4>
+            <p>{{notes}}</p>
+        </div>
+        <div class="thumbBlock" ng-click="vote(0)">
+            <img alt="" src="images/tup.svg" class="thumb"/>
+            <span>{{ups}}</span>
+        </div>
+        <div class="thumbBlock" ng-click="vote(1)">
+            <img alt="" src="images/tdown.svg" class="thumb"/>
+            <span>{{downs}}</span>
+        </div>
+    </md-whiteframe>
+    <md-whiteframe class="md-whiteframe-z1 watchCards" layout="column"
+                   layout-align="center center start">
+        <md-input-container>
+            <label>Add Comments</label>
+            <textarea columns="1" md-maxlength="150" ng-model="comment"></textarea>
+        </md-input-container>
+        <md-button ng-click="post()" class="md-primary">add</md-button>
+        <md-list layout-align="start">
+            <md-item ng-repeat="comm in comments track by $index">
+                <md-item-content>
+                    <div class="md-tile-left">
+                        <img ng-src="{{face}}" class="face">
+                    </div>
+                    <span class="md-tile-content">{{comm}}</span>
+                </md-item-content>
+            </md-item>
+        </md-list>
+    </md-whiteframe>
+</div>

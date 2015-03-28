@@ -36,6 +36,44 @@ leapApp.controller("UpCtrl", function($scope, $http){
 
 leapApp.controller("WatchCtrl", function($scope, $http, $location){
     $scope.id = $location.search()["id"];
+    $scope.ups = 42;
+    $scope.downs = 1;
+    $scope.voted = -1;
+    $scope.comments = [];
+    $scope.comment = "";
+    $scope.post = function() {
+        if ($scope.comment.length != 0) {
+            $scope.comments.push($scope.comment);
+            $scope.comment = "";
+        }
+    };
+    $scope.vote = function(v) {
+        if (v==0) { // up
+            if ($scope.voted == 0) {
+                $scope.ups -= 1;
+                $scope.voted = -1;
+            } else if ($scope.voted == -1){
+                $scope.ups += 1;
+                $scope.voted = 0;
+            }
+        } else { // down
+            if ($scope.voted == 1) {
+                $scope.downs -= 1;
+                $scope.voted = -1;
+            } else if ($scope.voted == -1){
+                $scope.downs += 1;
+                $scope.voted = 1;
+            }
+        }
+    };
+    $http.get('data/list.json').success(function(data) {
+        $scope.allTuts = data;
+        var tut = $scope.allTuts[$scope.id];
+        $scope.title = tut.title;
+        $scope.notes = tut.notes;
+        $scope.face = tut.face;
+        $scope.author = tut.who;
+    });
 });
 
 // Home page controller
