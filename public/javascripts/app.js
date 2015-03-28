@@ -44,6 +44,9 @@ leapApp.controller("UpCtrl", function($scope, $http){
 });
 
 leapApp.controller("WatchCtrl", function($scope, $http, $location){
+    $scope.back = function() {
+        window.location.href = "/";
+    };
     // Leap Motion
      var controller = new Leap.Controller();
      var overlayController = new Leap.Controller();
@@ -79,7 +82,7 @@ leapApp.controller("WatchCtrl", function($scope, $http, $location){
                  win.insertBefore(a[i], win.childNodes[1]);
              }
          }
-     }, 1000);
+     },1000);
     // Rest
     $scope.id = $location.search()["id"];
     $scope.ups = 42;
