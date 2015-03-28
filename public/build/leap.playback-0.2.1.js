@@ -1800,7 +1800,7 @@ Recording.prototype = {
       overlay.style.fontSize = '18px';
       overlay.style.opacity = '0.8';
       overlay.style.display = 'none';
-      overlay.style.zIndex = '10';
+        overlay.style.zIndex = '10';
       overlay.id = 'connect-leap';
       overlay.style.cursor = 'pointer';
       overlay.addEventListener("click", function () {

@@ -39,50 +39,63 @@ leapApp.controller("TestCtrl", function($scope, $http) {
 // Upload page controller
 leapApp.controller("UpCtrl", function($scope, $http){
     $scope.back = function() {
-        window.location.href = "/";
+        window.location.href = "#/";
+    };
+    $scope.record = function() {
+        window.location.href = "/record";
     };
 });
 
 leapApp.controller("WatchCtrl", function($scope, $http, $location){
     $scope.back = function() {
-        window.location.href = "/";
+        window.location.href = "#/";
     };
     // Leap Motion
-     var controller = new Leap.Controller();
-     var overlayController = new Leap.Controller();
-     controller.use('playback',
-                    {
-                        recording: 'recorder/recordings/pinch-57fps.json.lz',
-                        requiredProtocolVersion: 6,
-                        pauseOnHand: false,
-                        loop: true,
-                        timeBetweenLoops: 1000
-                    })
-               .use('riggedHand',{materialOptions:{wireframe:true}});
-     overlayController.use('riggedHand');
-     overlayController.connect();
-     controller.plugins.playback.player.overlay = overlayController;
-     window.controller = controller;
-     setTimeout(function(){
-         var can = document.querySelector("canvas");
-         can.style.position = "relative";
-         var win = document.getElementById("watchWindow");
-         win.insertBefore(can, win.childNodes[0]);
-         var a = document.body.childNodes;
-         var cl = document.getElementById("connect-leap");
-         win.insertBefore(cl, win.childNodes[1]);
-         for (var i = 0; i < a.length; i++) {
-             if (a[i].tagName === "CANVAS") { // audience hands
-                 a[i].border = "solid";
-                 a[i].style.position = "absolute";
-                 a[i].style.width = can.offsetWidth + "px";
-                 a[i].style.height = can.offsetHeight + "px";
-                 a[i].style.top = can.offsetTop;
-                 a[i].style.left = can.offsetLeft;
-                 win.insertBefore(a[i], win.childNodes[1]);
-             }
-         }
-     },1000);
+    var controller = new Leap.Controller();
+    var overlayController = new Leap.Controller();
+    controller.use('playback',
+                   {
+                       recording: 'recorder/recordings/pinch-57fps.json.lz',
+                       requiredProtocolVersion: 6,
+                       pauseOnHand: false,
+                       loop: true,
+                       timeBetweenLoops: 1000
+                   })
+        .use('riggedHand',{materialOptions:{wireframe:true}});
+    overlayController.use('riggedHand');
+    overlayController.connect();
+    controller.plugins.playback.player.overlay = overlayController;
+    window.controller = controller;
+    /* Matching Algorithm Here */
+    var f1, f2;
+    overlayController.on('frame', function(F1) {
+        f1 = F1;
+    });
+    controller.on('frame', function(F2) {
+        f2 = F2;
+        /* Compare f1 f2 here */
+    });
+
+    setTimeout(function(){
+        var can = document.querySelector("canvas");
+        can.style.position = "relative";
+        var win = document.getElementById("watchWindow");
+        win.insertBefore(can, win.childNodes[0]);
+        var a = document.body.childNodes;
+        var cl = document.getElementById("connect-leap");
+        win.insertBefore(cl, win.childNodes[1]);
+        for (var i = 0; i < a.length; i++) {
+            if (a[i].tagName === "CANVAS") { // audience hands
+                a[i].border = "solid";
+                a[i].style.position = "absolute";
+                a[i].style.width = can.offsetWidth + "px";
+                a[i].style.height = can.offsetHeight + "px";
+                a[i].style.top = can.offsetTop;
+                a[i].style.left = can.offsetLeft;
+                win.insertBefore(a[i], win.childNodes[1]);
+            }
+        }
+    },1000);
     // Rest
     $scope.id = $location.search()["id"];
     $scope.ups = 42;

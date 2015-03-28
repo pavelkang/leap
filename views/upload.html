@@ -1,42 +1,42 @@
 <div class="container ng-scope" layout="column" layout-align="center center">
 
-<md-whiteframe class="md-whiteframe-z1" layout="column" layout-align="center center">
-    <div class="ng-binding">PLAYBACK Recording </div>
-</md-whiteframe>
+    <md-whiteframe class="md-whiteframe-z1" layout="column" layout-align="center center">
+        <md-button ng-click="record()" class="md-primary">Start Recording...</md-button>
+    </md-whiteframe>
 
-<md-whiteframe class="md-whiteframe-z1" layout="column">
+    <md-whiteframe class="md-whiteframe-z1" layout="column">
 
-  <h3>Basic Info</h3>
+        <h3>Basic Info</h3>
 
-  <div layout="" layout-sm="column">
-    <md-input-container flex="" class="md-default-theme">
-      <label for="input_008">Title</label>
-      <input ng-model="video.title" class="ng-pristine ng-untouched ng-valid md-input" id="input_008" tabindex="0" aria-invalid="false">
-    </md-input-container>
-  </div>
-
-
-  <md-input-container flex="" class="md-default-theme">
-    <label for="input_009">Uploader's Name</label>
-    <input ng-model="video.uploader" class="ng-pristine ng-untouched ng-valid md-input" id="input_009" tabindex="0" aria-invalid="false">
-  </md-input-container>
+        <div layout="" layout-sm="column">
+            <md-input-container flex="" class="md-default-theme">
+                <label for="input_008">Title</label>
+                <input ng-model="video.title" class="ng-pristine ng-untouched ng-valid md-input" id="input_008" tabindex="0" aria-invalid="false">
+            </md-input-container>
+        </div>
 
 
-  <md-input-container flex="" class="md-default-theme">
-    <label for="input_00A">Add Tags #</label>
-    <input ng-model="video.tag" class="ng-pristine ng-untouched ng-valid md-input" id="input_00A" tabindex="0" aria-invalid="false">
-  <div class="md-placeholder">Example: sign language, piano, guitar ...</div></md-input-container>
+        <md-input-container flex="" class="md-default-theme">
+            <label for="input_009">Uploader's Name</label>
+            <input ng-model="video.uploader" class="ng-pristine ng-untouched ng-valid md-input" id="input_009" tabindex="0" aria-invalid="false">
+        </md-input-container>
 
-  <md-input-container flex="" class="md-default-theme">
-    <label for="input_00B">Description</label>
-    <textarea ng-model="video.description" columns="1" md-maxlength="150" class="ng-pristine ng-untouched ng-valid md-input ng-valid-md-maxlength" id="input_00B" ng-trim="false" aria-multiline="true" tabindex="0" aria-invalid="false" style="height: 56px;"></textarea>
-  <div class="md-char-counter">0/150</div></md-input-container>
 
-  <md-button class="md-raised md-primary" style="padding: 15px;">Upload</md-button>
+        <md-input-container flex="" class="md-default-theme">
+            <label for="input_00A">Add Tags #</label>
+            <input ng-model="video.tag" class="ng-pristine ng-untouched ng-valid md-input" id="input_00A" tabindex="0" aria-invalid="false">
+            <div class="md-placeholder">Example: sign language, piano, guitar ...</div></md-input-container>
 
-  <md-button class="md-fab md-accent" aria-label="Use Android" style="color: white;position: absolute;left: 7%;bottom: 10%;" ng-click="back()">
-      <md-tooltip>Back to Home</md-tooltip>
-      <md-icon md-svg-src="images/last-track.svg"></md-icon>
-  </md-button>
+        <md-input-container flex="" class="md-default-theme">
+            <label for="input_00B">Description</label>
+            <textarea ng-model="video.description" columns="1" md-maxlength="150" class="ng-pristine ng-untouched ng-valid md-input ng-valid-md-maxlength" id="input_00B" ng-trim="false" aria-multiline="true" tabindex="0" aria-invalid="false" style="height: 56px;"></textarea>
+            <div class="md-char-counter">0/150</div></md-input-container>
 
-</md-whiteframe>
+        <md-button class="md-raised md-primary" style="padding: 15px;">Upload</md-button>
+
+        <md-button class="md-fab md-accent" aria-label="Use Android" style="color: white;position: absolute;left: 7%;bottom: 10%;" ng-click="back()">
+            <md-tooltip>Back to Home</md-tooltip>
+            <md-icon md-svg-src="images/last-track.svg"></md-icon>
+        </md-button>
+
+    </md-whiteframe>

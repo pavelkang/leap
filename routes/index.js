@@ -10,4 +10,8 @@ router.get('/test', function(req, res) {
     res.sendfile("views/test.html");
 });
 
+router.get('/record', function(req, res) {
+    res.sendfile("views/record.html");
+});
+
 module.exports = router;
