@@ -20,3 +20,9 @@ md-item-content:hover {
     background-color: #e8eaf6;
     cursor: pointer;
 }
+#uploadButton {
+    color: white;
+    position: absolute;
+    right: 7%;
+    bottom: 10%;
+}

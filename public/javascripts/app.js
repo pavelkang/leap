@@ -9,6 +9,10 @@ leapApp.config(function($routeProvider) {
         .when('/upload', {
             templateUrl : 'upload.html',
             controller  : 'UpCtrl'
+        })
+        .when('/watch', {
+            templateUrl : 'watch.html',
+            controller : 'WatchCtrl'
         });
 });
 // Theming
@@ -30,15 +34,21 @@ leapApp.controller("UpCtrl", function($scope, $http){
     console.log("Hi");
 });
 
+leapApp.controller("WatchCtrl", function($scope, $http, $location){
+    $scope.id = $location.search()["id"];
+});
+
 // Home page controller
 leapApp.controller("AppCtrl", function($scope, $http){
     $scope.query = "";
     $scope.todos = [];
     $http.get('data/list.json').success(function(data) {
-        console.log(data);
         $scope.todos = data;
     });
     $scope.click = function(item) {
-        console.log(item);
+        window.location.href = "#/watch?id="+item.id;
+    };
+    $scope.upload = function() {
+        window.location.href = "#/upload";
     };
 });
