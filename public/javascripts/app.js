@@ -1,14 +1,11 @@
-var leapApp = angular.module("homeApp", ["ngMaterial", "ngRoute"]);
+var leapApp = angular.module("homeApp", ["ngMaterial", "ngRoute", "firebase"]);
+
 // Routing
 leapApp.config(function($routeProvider) {
     $routeProvider
         .when('/', {
             templateUrl : 'home.html',
             controller  : 'AppCtrl'
-        })
-        .when('/upload', {
-            templateUrl : 'upload.html',
-            controller  : 'UpCtrl'
         })
         .when('/watch', {
             templateUrl : 'watch.html',
@@ -33,9 +30,6 @@ leapApp.config(function($mdThemingProvider) {
         });
 
 });
-leapApp.controller("TestCtrl", function($scope, $http) {
-    console.log("CTrl");
-});
 // Upload page controller
 leapApp.controller("UpCtrl", function($scope, $http){
     $scope.back = function() {
@@ -44,13 +38,56 @@ leapApp.controller("UpCtrl", function($scope, $http){
     $scope.record = function() {
         window.location.href = "/record";
     };
+    $scope.submit = function() {
+        var ref = new Firebase('https://glaring-fire-5733.firebaseio.com/');
+        ref.push(
+            {
+                "id": $scope.title,
+                "face": "/images/60.jpeg",
+                "title": $scope.title,
+                "who": $scope.who,
+                "notes": $scope.notes,
+                "rec": "/data/hard.json"
+            },
+            function() {
+                console.log("YAY");
+                window.location.href = "/";
+            }
+        );
+        ref.on("value", function(ss) {
+            var x = ss.val();
+            console.log(x.length);
+        });
+        //window.location.href = "/";
+    };
+    var data = {
+        "face" : "/images/60.jpeg",
+        "title": $scope.title,
+        "who": $scope.who,
+        "notes": $scope.notes
+    };
 });
 
 leapApp.controller("WatchCtrl", function($scope, $http, $location){
+    $scope.id = $location.search()["id"];
     $scope.back = function() {
         window.location.href = "#/";
     };
     // Leap Motion
+    var ref = new Firebase('https://glaring-fire-5733.firebaseio.com/');
+    ref.on("value", function(ss) {
+        var data = ss.val();
+        for (var key in data) {
+            var x = data[key];
+            if (x.id == $scope.id) {
+                console.log(x);
+                $scope.title = x.title;
+                $scope.who = x.who;
+                $scope.notes = x.notes;
+                $scope.face = x.face;
+            }
+        }
+    });
     var controller = new Leap.Controller();
     var overlayController = new Leap.Controller();
     controller.use('playback',
@@ -73,7 +110,6 @@ leapApp.controller("WatchCtrl", function($scope, $http, $location){
     });
     controller.on('frame', function(F2) {
         f2 = F2;
-        /* Compare f1 f2 here */
     });
 
     setTimeout(function(){
@@ -97,7 +133,6 @@ leapApp.controller("WatchCtrl", function($scope, $http, $location){
         }
     },1000);
     // Rest
-    $scope.id = $location.search()["id"];
     $scope.ups = 42;
     $scope.downs = 1;
     $scope.voted = -1;
@@ -118,7 +153,7 @@ leapApp.controller("WatchCtrl", function($scope, $http, $location){
             } else if ($scope.voted == -1){
                 $scope.ups += 1;
                 $scope.voted = 0;
-                document.getElementById("tup").style.color = "indigo";
+                document.getElementById("tup").style.color = "blue";
             }
         } else { // down
             if ($scope.voted == 1) {
@@ -132,27 +167,17 @@ leapApp.controller("WatchCtrl", function($scope, $http, $location){
             }
         }
     };
-    $http.get('data/list.json').success(function(data) {
-        $scope.allTuts = data;
-        var tut = $scope.allTuts[$scope.id];
-        $scope.title = tut.title;
-        $scope.notes = tut.notes;
-        $scope.face = tut.face;
-        $scope.author = tut.who;
-    });
 });
 
 // Home page controller
-leapApp.controller("AppCtrl", function($scope, $http){
+leapApp.controller("AppCtrl", function($scope, $http, $firebaseObject){
+    var ref = new Firebase('https://glaring-fire-5733.firebaseio.com/');
+    $scope.todos = $firebaseObject(ref);
     $scope.query = "";
-    $scope.todos = [];
-    $http.get('data/list.json').success(function(data) {
-        $scope.todos = data;
-    });
     $scope.click = function(item) {
         window.location.href = "#/watch?id="+item.id;
     };
     $scope.upload = function() {
-        window.location.href = "#/upload";
+        window.location.href = "/upload";
     };
 });

@@ -4,39 +4,34 @@
         "face" : "/images/guitar.jpg",
         "title": "Guitar Strum",
         "who": "Hongyu Li",
-        "notes": "A tutorial on how to strum the guitar",
-        "rec": "recorder/recordings/pinch-57fps.json.lz"
+        "notes": "A tutorial on how to strum the guitar"
     },
     {
         "id": "1",
         "face" : "/images/cut.jpg",
         "title": "Cut Vegetables",
         "who": "Kai Kang",
-        "notes": "Learn how to properly cut your ingredients to make them more flavorful",
-        "rec": "recorder/recordings/pinch-57fps.json.lz"
+        "notes": "Learn how to properly cut your ingredients to make them more flavorful"
     },
     {
         "id": "2",
         "face" : "/images/sign.jpg",
         "title": "Sign Language",
         "who": "Kai Kang",
-        "notes": "Learn sign language for the deaf",
-        "rec": "recorder/recordings/pinch-57fps.json.lz"
+        "notes": "Learn sign language for the deaf"
     },
     {
         "id":"3",
         "face" : "/images/piano.png",
         "title": "Piano",
         "who": "Yicheng Fang",
-        "notes": "Learn the right hand posture to play the piano",
-        "rec": "recorder/recordings/pinch-57fps.json.lz"
+        "notes": "Learn the right hand posture to play the piano"
     },
     {
         "id":"4",
         "face" : "/images/massage.jpg",
         "title": "Massage",
         "who": "Yicheng Fang",
-        "notes": "Best way to relieve your pressure and have a good time",
-        "rec": "recorder/recordings/pinch-57fps.json.lz"
+        "notes": "Best way to relieve your pressure and have a good time"
     }
 ]
